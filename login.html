@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="validation.css">
+</head>
+<body>
+    <header>
+        <div id="top-header">
+            <div>LOGO</div>
+            <div>MYwebsite.com</div>
+        </div>
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Login</a>
+            <a href="#">SignUp</a>
+        </nav>
+    </header>
+
+    <div class="content">
+        <form action="new.php" onsubmit="return validate()" method="post">
+            <fieldset class="container">
+                <legend>Signup</legend>
+                
+                <div class="input-group">
+                    <label for="text">Enter your name</label>
+                    <input type="text" name="text" id="text">
+                </div>
+                
+                <div class="input-group">
+                    <label for="pw">Password</label>
+                    <input type="password" name="pw" id="pw">
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email">
+                    <span id="emailError" class="error-message"></span>
+                </div>
+                
+                <input type="submit" value="Submit here">
+            </fieldset>
+        </form>
+    </div>
+
+    <script>
+        function validate() {
+            var email = document.getElementById('email').value;
+            var emailField = document.getElementById('email');
+            var valid = true;
+            
+            // Email validation
+            var emailPattern = /^[\w.-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').innerText = 'Enter a valid email address';
+                emailField.style.backgroundColor = "red";
+                emailField.setAttribute("placeholder", "Enter valid email");
+                emailField.value = "";
+                valid = false;
+            } else {
+                document.getElementById('emailError').innerText = '';
+                emailField.style.backgroundColor = "";
+            }
+
+            // Password validation
+            var password = document.getElementById('pw').value;
+            if (password === "") {
+                alert("Password cannot be empty");
+                valid = false;
+            }
+
+            return valid;
+        }
+    </script>
+</body>
+</html>
